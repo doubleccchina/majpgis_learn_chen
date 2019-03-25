@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>OpenLayers 示例</title>
+    <script src="libs/OpenLayers.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var map=wms=null;//声明变量
+    var maxBound = new OpenLayers.Bounds(114.125602, 30.453932, 114.500707,30.829037);//地图最大范围
+    function init(){
+        var map = new OpenLayers.Map('map',{maxExtent: maxBound, maxResolution:0.00146525390625}); //创建一个 map 对象即地图容器
+        //创建一个层，该层中图层的调用接口（“URL 地址”）符合 WMS 规范
+        var wms = new OpenLayers.Layer.WMS("OpenLayersWMS","http://vmap0.tiles.osgeo.org/wms/vmap0", { layers: 'basic' });
+        map.addLayer(wms); //将已建好的层添加到地图容器中
+        //设置地图中心点和初始级别
+        map.setCenter(new OpenLayers.LonLat(114.3131545, 30.6414845), 2);
+        map.addControl(new OpenLayers.Control.LayerSwitcher());//添加图层开关控件
+        map.addControl(new OpenLayers.Control.PanZoomBar ());//添加地图导航控件
+}
+ </script>
+</head>
+<body  onload="init();">
+    <h1 id="title">MapGIS 练习-河北水利电力学院</h1>
+<div id="map" style="height:550px;width:800px;border:solid 1px black"></div>
+</body>
+</html>
